@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>条件渲染 v-if</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="root"></div>
+    <script>
+        const app =Vue.createApp({
+            data() {
+                return {
+                    show:true
+                }
+            },
+            template: `<div v-if="true">Hello World</div>
+                       <div v-if="FALSE">我要隐藏</div>
+                       `
+            ,
+        })
+        app.mount('#root')
+    </script>
+</body>
+
+</html>

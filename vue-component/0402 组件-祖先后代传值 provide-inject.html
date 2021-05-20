@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>vue-组件 provide-inject</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const app = Vue.createApp({
+                //1.祖先组件中,利用provide传递数据
+                provide: {
+                    count: 2,
+                },
+                template: `<child />`,
+            })
+            //2.中间组件,只负责调用组件,无需props接收上级组件传值
+        app.component('child', {
+            template: `<child-child />`,
+        })
+        app.component('child-child', {
+            //3.后代组件中,利用inject接收数据
+            inject: ['count'],
+            template: `<div>{{count}}</div>`,
+        })
+        app.mount('#root')
+    </script>
+</body>
+
+</html>

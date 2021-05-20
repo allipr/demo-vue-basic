@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>组件 component</title>
+</head>
+<style>
+    *{
+        user-select: none;/*不允许内容被选中、复制 */
+        cursor: pointer;/*变小手*/
+    }
+</style>
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="root"></div>
+    <script>
+        //局部组件
+        //局部组件的定义:通过定义一个变量或者常量来实现
+        //为了区分局部组件和全局组件,局部组件一律采用大驼峰命名
+        const Counter={
+            data () {
+                return {
+                    count:1
+                }
+            },
+            template:`<div @click="count += 1">{{count}}</div>`
+        }
+        const HelloWorld={
+            template:`<div>hello word</div>`
+        }
+  
+        //根组件
+        //应用是一个根组件
+        const app =Vue.createApp({
+            //先注册局部组件
+            components:{
+                Counter,
+                HelloWorld
+            },
+ 
+            //再调用局部组件
+            template: `<counter />
+                        <hello-world />
+                       `
+            ,
+        })
+        app.mount('#root')
+    </script>
+</body>
+
+</html>

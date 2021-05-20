@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>todolist</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        //list有关内容封装
+        const listRelativeEffect = () => {
+                const {
+                    reactive
+                } = Vue
+                const list = reactive([])
+                const addItemToList = (item) => {
+                    list.push(item)
+                        // inputValue.value = ''
+                }
+                return {
+                    list,
+                    addItemToList,
+                }
+            }
+            //inputValue相关内容封装
+        const inputRelativeEffect = () => {
+            const {
+                ref
+            } = Vue
+            const inputValue = ref('')
+            const handleInputValue = (e) => {
+                // console.log(e.target.value)
+                inputValue.value = e.target.value
+            }
+            return {
+                inputValue,
+                handleInputValue,
+            }
+        }
+        const app = Vue.createApp({
+            //流程调度的中转
+            setup() {
+                const {
+                    list,
+                    addItemToList
+                } = listRelativeEffect()
+                const {
+                    inputValue,
+                    handleInputValue
+                } = inputRelativeEffect()
+                return {
+                    list,
+                    addItemToList,
+                    inputValue,
+                    handleInputValue,
+                }
+            },
+            template: `
+        <div>
+            <input type="text" :value="inputValue" @input="handleInputValue">
+            <button @click="()=>{addItemToList(inputValue)}">提交</button>
+            <ul>
+                <li v-for="(item,index) in list">{{item}}</li>
+            </ul>
+        </div>
+        `,
+        })
+        app.mount('#root')
+    </script>
+</body>
+
+</html>

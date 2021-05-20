@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    inputValue: '111',
+                    list: [],
+                }
+            },
+            methods: {
+                //添加（后面加一项）
+                handleInputValuePush() {
+                    // this.$data.list.push(this.$data.inputValue)//
+                    this.list.push(this.inputValue) //缩写(往数组后追加)
+                    this.inputValue = ''
+                },
+                //添加（前面加一项）
+                handleInputValueUnshift() {
+                    this.list.unshift(this.inputValue) //缩写(往数组后追加)
+                    this.inputValue = ''
+                },
+                //删除（删除末一项）
+                handleInputValuePop() {
+                    this.list.pop()
+                },
+                //删除（删除末一项）
+                handleInputValueShift() {
+                    this.list.shift()
+                },
+                //数组翻转
+                handleInputValueReverse() {
+                    this.list.reverse()
+                },
+                //sort排序
+                //splice添加\删除,更万能
+            },
+            //:key目的在于已渲染的,不重新渲染
+            template: `
+            <input v-model="inputValue"/>
+            {{inputValue}}
+            <button @click="handleInputValuePush">后面添加</button>
+            <button @click="handleInputValueUnshift">前面添加</button>
+            <button @click="handleInputValuePop">删除末项</button>
+            <button @click="handleInputValueShift">删除首项</button>
+            <button @click="handleInputValueReverse">数组翻转</button>
+            <hr/>
+            <ul>
+              <li v-for="(item,index) in list" :key="index">{{item}}</li>
+            </ul>
+            `,
+        })
+        app.mount('#root')
+    </script>
+</body>
+
+</html>

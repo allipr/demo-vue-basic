@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>watch() ref</title>
+
+</head>
+<body>
+    <div id="root"></div>
+        <script>
+            //watch侦听器 
+            //基础数据类型 ref
+            const app =Vue.createApp({
+                setup(){
+                    //1.析构出watch和ref
+                    const {ref,watch}=Vue
+                    //2.定义所监听的普通变量，并响应式赋值
+                    const name=ref("云牧")
+                    //3.监听变量
+                    watch(name,(currentValue,preValue)=>{
+                        //4.在页面或模板修改 name值,
+                        //  此处打印并观察:当前值和原始值
+                        console.log(currentValue,preValue)
+                    })
+                    //5.return {name},供页面或模板使用
+                    return {name}
+                },
+                template:`
+                <div>
+                    Name:<input v-model="name">
+                </div>
+                <div>
+                    Name is {{name}}
+                </div>
+                `,
+            })
+            const vm = app.mount('#root')
+        </script>
+</body>

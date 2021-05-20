@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>computed</title>
+
+</head>
+<body>
+    <div id="root"></div>
+        <script>
+            const app =Vue.createApp({
+                template:`
+                <h3>方法:</h3>
+                <div>{{msg}} :{{getTotal()}}</div>
+                <hr/>
+                <h3>计算属性:</h3>
+                <div>{{msg}} :{{total}}</div>
+                <hr/>
+                <h3>结论:</h3>
+                <p>方法:会变化</p>
+                <p>计算属性:不会变化,有缓存机制(只有其依赖的内容发生变化时,自身才重新计算)</p>
+                `,
+                data () {
+                    return {
+                        msg:'console 调试（vm.$data.msg=改变）,观察后面是否变化'
+                    }
+                },
+                methods: {
+                    getTotal(){
+                        return Date.now()
+                    }
+                },
+                computed: {
+                    total(){
+                        return Date.now()
+                    }
+                }
+
+            })
+            const vm = app.mount('#root')
+            //浏览器 console 下，使用 vm.$data.count=3调试
+        </script>
+</body>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>组件 component 复用</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="root"></div>
+    <script>
+        const app =Vue.createApp({
+            data() {
+                return {
+                    list:['hello','yunmu','teacher']
+                }
+            },
+            template: `
+            <count />
+            <count-parent />
+                       `
+            ,
+        })
+        //全局组件 只有定义了 处处可以使用  性能不高 但是用起来简单
+        app.component("count",{
+            data () {
+                return {
+                    count:1
+                }
+            },
+            template:`<div @click="count += 1">{{ count }}<div>`
+        })
+        //子组件引用子组件
+        app.component("count-parent",{
+            template:`<count />`
+        })
+        app.mount('#root')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>computed</title>
+    <style>
+        *{
+            user-select: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+        <script>
+            const app =Vue.createApp({
+               
+                data () {
+                    return {
+                        key:"value"
+                    }
+                },
+                methods: {},
+                setup(){
+                    const {ref,computed}=Vue
+                    const count=ref(0)
+                    const handleClick=()=>{
+                        // alert('handleClick')
+                        count.value +=1
+                    }
+                    const countAddFive=computed({
+                        get:()=>{//获取:箭头函数
+                            return count.value+5
+                        },
+                        set:(param)=>{//设置:夹头函数
+                            count.value=param-5
+                        }
+                    })
+                    setTimeout(() => {
+                        countAddFive.value=100
+                    },2000);
+                    return {
+                        count,handleClick,countAddFive
+                    }
+                },
+                template:`
+                <div>
+                    <span @click="handleClick">{{ count }}---{{ countAddFive }}</span>
+                </div>
+                `,
+
+            })
+            const vm = app.mount('#root')
+        </script>
+</body>

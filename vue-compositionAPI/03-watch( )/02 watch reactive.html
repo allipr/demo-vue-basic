@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>watch() reactive</title>
+
+</head>
+<body>
+    <div id="root"></div>
+        <script>
+            //watch侦听器
+            //解构数据 reactive
+            const app =Vue.createApp({
+
+                setup(){
+                    //1.析构出reactive、toRefs和watch
+                    const {reactive,toRefs,watch}=Vue
+                    //2.定义所监听的对象变量，并响应式赋值
+                    const obj=reactive({name:"云牧1"})
+                    //3.监听对象.属性
+                    watch(()=>obj.name,function(currentValue,preValue){
+                        //4.在页面或模板修改 name值,
+                        //  此处打印并观察:当前值和原始值
+                        console.log(currentValue,preValue)
+                    })
+                    //5。从对象中析构出属性name
+                    const {name} = toRefs(obj)
+                    //6.return {name},供页面或模板使用
+                    return {name}
+                },
+                
+                // watch(参数,回调函数)//参数为被侦听对象
+                template:`
+                <div>
+                    Name:<input v-model="name">
+                </div>
+                <div>
+                    Name is {{name}}
+                </div>
+                `,
+            })
+            const vm = app.mount('#root')
+        </script>
+</body>

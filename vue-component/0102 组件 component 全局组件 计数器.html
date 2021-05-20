@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>组件 component</title>
+</head>
+<style>
+    *{
+        user-select: none;/*不允许内容被选中、复制 */
+        cursor: pointer;/*变小手*/
+    }
+</style>
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="root"></div>
+    <script>
+        //应用 是一个根组件
+        const app =Vue.createApp({
+            data() {
+                return {
+                    list:['hello','yunmu','teacher']
+                }
+            },
+            //根组件 调用 子组件(全局组件)
+            template: `<count />
+                       `
+            ,
+        })
+        //全局组件
+        //全局组件定义:建议使用小写字母命名,中间用横线隔开
+        app.component("count",{
+            data () {
+                return {
+                    count:1
+                }
+            },
+            template:`<div @click="count += 1">{{ count }}<div>`
+        })
+        app.mount('#root')
+    </script>
+</body>
+
+</html>

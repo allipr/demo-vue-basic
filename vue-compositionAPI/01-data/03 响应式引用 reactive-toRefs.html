@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>vue basic</title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        //ref reactive 响应式引用
+        //原理 通过proxy对数据进行封装,当数据变化时,触发模板数据进行更新
+        //reactive 处理非基础类型数据响应式引用
+        const app = Vue.createApp({
+            template: `<div>name:{{name}}---age:{{age}}</div>`,
+            setup() {
+                //1.从Vue中解构出reactive
+                const {
+                    reactive,toRefs
+                } = Vue
+                //2.通过proxy {name:"云牧"} 变成 Proxy({name:"云牧"})这样响应式引用
+                let obj = reactive({
+                    name: '牧童',
+                    age:15
+                })
+                const {
+                    name,age
+                } = toRefs(obj)
+                //3.开计时器,2秒后,云牧变云朵
+                setTimeout(() => {
+                    name.value = '黄牛',
+                    age.value = 50
+                }, 2000);
+                return {
+                    name,age
+                }
+            }
+
+        })
+        app.mount("#root")
+    </script>
+</body>
