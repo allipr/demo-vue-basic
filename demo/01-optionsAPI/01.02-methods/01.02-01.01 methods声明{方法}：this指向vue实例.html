@@ -20,13 +20,14 @@
                 }
             },
             methods: {
-                handleClick(){
+                handleClick() {
                     console.log(this);
-                    alert("handleClick")
+                    console.log(this.$data.msg);
+                    alert("methods申明{方法}：this指向vue实例")
                 }
             },
         })
-        app.mount('#root')
+        const vm = app.mount('#root')
     </script>
 </body>
 

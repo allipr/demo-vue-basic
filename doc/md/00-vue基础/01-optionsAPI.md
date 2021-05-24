@@ -8,6 +8,45 @@
 
 ### methods
 
+#### 1、methods对象声明
+
+```js
+#方法
+methods: {
+    handleClick(){
+    	console.log(this);//this指向vue实例vm
+    }
+},
+```
+
+```js
+#属性:匿名函数
+methods: {
+    handleClick:function(){
+        console.log(this);//this指向外层vue实例vm
+    }
+},
+```
+
+```js
+#属性:箭头函数
+methods: {
+    handleClick:()=>{
+        console.log(this);//this指向window
+    }
+},
+```
+
+> 注意：
+>
+> 当this指向vue实例时，通过`this.$data`可获得vue实例下的data methods等。
+
+#### 2、methods对象使用
+
+##### 2.1、v-on指令
+
+##### 2.2、@指令
+
 ### computed
 
 ### watch
