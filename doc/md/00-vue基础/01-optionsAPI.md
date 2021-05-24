@@ -36,6 +36,38 @@
 
 #### 示例
 
+##### 跑秒表
+
+> 要点
+>
+> `setInterval()` `mounted() `
+
+```js
+<div id="root"></div>
+    <script>
+        const app = Vue.createApp({
+            template: `
+            <div>{{ count}}</div>
+            `,
+            data() {
+                return {
+                    count: 1
+                }
+            },
+            mounted() {
+                // console.log(this.$data.count);// 可正常读取，this指向vue实例 vm
+                setInterval(() => {
+                     // console.log(this.$data.count);// 可正常读取，this指向vue实例 vm
+                    this.count += 1//等价于：this$data.count += 1
+                }, 1000);
+            }
+        })
+        const vm = app.mount('#root')
+    </script>
+```
+
+
+
 ```js
 Vue.createApp({
   data() {
