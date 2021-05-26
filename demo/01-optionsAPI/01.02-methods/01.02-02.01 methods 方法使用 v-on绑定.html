@@ -15,6 +15,8 @@
         const app = Vue.createApp({
             template: `
             <div @click="handleClick">{{ formatString(msg) }}</div>
+            <button v-on="">点我转大写</button>
+            <button>点我转小写</button>
             <input v-model="msg"/>
             `,
             data() {
@@ -23,14 +25,14 @@
                 }
             },
             methods: {
-                handleClick:function(){
+                handleClick: function () {
                     // console.log(this.msg);
                     // console.log(this.$data.msg);
                     // alert('this.msg 或+者 this.$data.msg：'+this.msg)
-                    this.msg=this.msg.toLowerCase();//转小写
+                    this.msg = this.msg.toLowerCase(); //转小写
                 },
-                formatString(string){
-                    return string.toUpperCase();//toLowerCase()转大写
+                formatString(string) {
+                    return string.toUpperCase(); //toLowerCase()转大写
                 }
             },
         })

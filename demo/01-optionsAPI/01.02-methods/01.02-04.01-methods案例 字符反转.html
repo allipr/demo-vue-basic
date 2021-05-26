@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>methods案例</title>
+
+</head>
+<div id="root"></div>
+<hr>
+
+<script>
+    const app = Vue.createApp({
+        template: `
+                <div>{{content}}</div>
+                <div><button v-on:click="handleClick">点我反转</button></div>
+            `,
+        data() {
+            return {
+                content: "hello world"
+            }
+        },
+        methods: {
+            handleClick() {
+                // alert(1)
+                // const newContent = this.content.split("") //字串分割为数组
+                //     .reverse() //数组反转
+                //     .join("") //数组各项拼接成字符
+
+                // console.log(newContent);
+                // this.content = newContent
+                this.content = this.content.split("").reverse().join("")
+            }
+        }
+    })
+    const vm = app.mount('#root')
+</script>
+</body>

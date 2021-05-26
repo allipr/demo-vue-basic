@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>methods案例-显示与隐藏</title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const app = Vue.createApp({
+            template: `
+                <div v-if="show">{{content}}</div>
+                <button v-on:click="vifClick">v-if显示与隐藏</button>
+            `,
+            data() {
+                return {
+                    show: true,
+                    content: "v-if显示与隐藏(销毁标签)",
+                }
+            },
+            methods: {
+                vifClick() {
+                    this.show = !this.show
+                }
+            }
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>
