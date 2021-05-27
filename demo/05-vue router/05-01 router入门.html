@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <title>router 入门</title>
+
+</head>
+
+<body>
+    <div id="root">
+        <h1>Hello App!</h1>
+        <p>
+            <!--使用 router-link 组件进行导航 -->
+            <!--通过传递 `to` 来指定链接 -->
+            <!--`<router-link>` 将呈现一个带有正确 `href` 属性的 `<a>` 标签-->
+            <router-link to="/">Go to Home</router-link>
+            <router-link to="/about">Go to About</router-link>
+        </p>
+        <!-- 路由出口 -->
+        <!-- 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+
+    </div>
+    <script>
+        // 1.定义页面组件
+        const Home = {
+            template: '<div>Home</div>'
+        }
+        const About = {
+            template: '<div>About</div>'
+        }
+        //2.定义路径映射
+        const routes = [{
+                path: '/',
+                component: Home
+            },
+            {
+                path: '/about',
+                component: About
+            },
+        ]
+        //3.实例化路由
+        const router = VueRouter.createRouter({
+            // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+            history: VueRouter.createWebHashHistory(),
+            routes, // `routes: routes` 的缩写
+        })
+        //4.实例化vue并使用路由
+        const app = Vue.createApp({
+
+        })
+        app.use(router)
+        const vm = app.mount('#root')
+    </script>
+</body>
