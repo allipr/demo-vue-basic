@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        // 1.申明组件变量
+        const GlobalComponent = {
+            template: `我是全局组件`
+        }
+        const app = Vue.createApp({
+            //3.在根组件中使用全局组件
+            template: `
+                <div>这里使用全局组件</div>
+                <GlobalComp></GlobalComp>
+                `,
+        })
+        //2.利用app.component('组件名',对象)定义全局组件
+        app.component('GlobalComp', GlobalComponent)
+        const vm = app.mount('#root')
+    </script>
+</body>

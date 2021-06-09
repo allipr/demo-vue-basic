@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        // 1.申明变量:局部组件名变量
+        const LocalComponent = {
+            template: '<div>我是局部组件</div>'
+        }
+        const app = Vue.createApp({
+            template: `
+                <div>下面使用局部组件:</div>
+                <LocalComponent></LocalComponent>`,
+            // 2.定义局部组件:components属性:{变量名}
+            components: {
+                LocalComponent
+            }
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>
