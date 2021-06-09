@@ -13,15 +13,16 @@
 <body>
     <div id="root"></div>
     <script>
-        // 1.申明变量:局部组件名变量
+        // 1.申明变量: 变量名={template}
         const LocalComponent = {
             template: '<div>我是局部组件</div>'
         }
         const app = Vue.createApp({
+            //3. 使用局部组件
             template: `
                 <div>下面使用局部组件:</div>
                 <LocalComponent></LocalComponent>`,
-            // 2.定义局部组件:components属性:{变量名}
+            // 2.定义局部组件: 属性components:{变量名}
             components: {
                 LocalComponent
             }
