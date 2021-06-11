@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        // 1.声明变量：子组件 
+        const
+            ChildComp = {
+                // 4.子组件使用该值
+                template: `
+                    <div>{{data-a}}--{{dataB}}--{{c}}</div>
+                `,
+                // 3.子组件接收该值
+                props: ['data-a', 'dataB', 'c']
+            }
+
+        const app = Vue.createApp({
+            components: {
+                ChildComp: ChildComp,
+            },
+            data() {
+                return {
+                    params: {
+                        a: 123,
+                        b: 456,
+                        c: 789
+                    }
+                }
+            },
+            // 2.使用子组件并传值
+            template: `
+                <child-comp :data-a="params.a" :data-b="params.b" :c="params.c"></child-comp>
+            `,
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>

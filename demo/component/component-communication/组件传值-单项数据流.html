@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        // 子组件 
+        const
+            ReadOnlyComp = {
+                template: `<div @click="cout+=1">{{ count }}</div>`,
+                props: ['count']
+            }
+        const ChildComp = {
+            template: `<div @click="mycount+=1">{{ mycount }}</div>`,
+            props: ['count'],
+            data() {
+                return {
+                    mycount: this.count
+                }
+            }
+        }
+        // 父组件
+        const app = Vue.createApp({
+            components: {
+                ReadOnly: ReadOnlyComp,
+                MyChild: ChildComp
+            },
+            data() {
+                return {
+                    num: 1
+                }
+            },
+            template: `
+                <read-only :count="num"></read-only>
+                <read-only :count="num"></read-only>
+                <hr/>
+                <my-child :count="num"></my-child>
+                <my-child :count="num"></my-child>
+            `,
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>
