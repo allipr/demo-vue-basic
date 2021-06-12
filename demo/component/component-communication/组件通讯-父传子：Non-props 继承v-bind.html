@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        // 2.子组件 
+        const
+            Child1 = {
+                props: ["content"],
+                template: `
+                    <div>{{content}}</div>
+                 `,
+            }
+
+        const Child2 = {
+            props: ["content"],
+            template: `
+            <div>{{content}}</div>
+            <div>{{content}}</div>
+            `
+        }
+
+        const Child3 = {
+            props: ["content"],
+            template: `
+            <div style="color:pink">{{content}}</div>
+            <div style="color:blue">{{content}}</div>
+            `
+        }
+        const Child4 = {
+            props: ["content"],
+            template: `
+            <div v-bind="$attrs">{{content}}</div>
+            <div>{{content}}</div>
+            `
+        }
+
+        // 1.父组件
+        const app = Vue.createApp({
+            components: {
+                Child1,
+                Child2,
+                Child3,
+                Child4,
+            },
+            // 1.2 传递数据
+            template: `
+                <child1 content="1:单标签继承" style="color:red;" msg1="hello" msg2="world"></child1>
+                <child2 content="2:多标签失效" style="color:red;" msg1="hello" msg2="world"></child2>
+                <child3 content="3:多标签自定" style="color:red;" msg1="hello" msg2="world"></child3>
+                <child4 content="4:多标签继承" style="color:red;" msg1="hello" msg2="world"></child4>
+
+            `,
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>

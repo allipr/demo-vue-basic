@@ -16,37 +16,28 @@
     <script>
         // 2.子组件 
         const
-            ChildComp = {
-                // 2.2 使用数据
+            Child1 = {
+                props: ["content"],
                 template: `
-                    <div>{{content}}</div>
-                `,
-                // 2.1 接收数据
-                props: {
-                    content: {
-                        // default: 1
-                        default: function () {
-                            return 3
-                        }
-                    }
+                    <div v-bind="$attrs">{{content}}</div>
+                 `,
+                mounted() {
+
+                    console.log(this.$attrs);
+                    console.log(this.$attrs.msg1);
                 }
             }
+
 
         // 1.父组件
         const app = Vue.createApp({
             components: {
-                ChildComp: ChildComp,
-            },
-            //1.1 定义数据
-            data() {
-                return {
-                    num: '字符串'
-                }
+                Child1,
+
             },
             // 1.2 传递数据
             template: `
-                <child-comp v-bind:content="num"></child-comp>
-                <child-comp></child-comp>
+                <child1 content="$attrs属性在方法等处使用" style="color:red;" msg1="hello" msg2="world"></child1>
             `,
         })
         const vm = app.mount('#root')

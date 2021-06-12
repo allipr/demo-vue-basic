@@ -24,9 +24,9 @@
                 // 2.1 接收数据
                 props: {
                     content: {
-                        // default: 1
-                        default: function () {
-                            return 3
+                        validator: (value) => {
+                            alert(value)
+                            return value < 1000
                         }
                     }
                 }
@@ -40,13 +40,12 @@
             //1.1 定义数据
             data() {
                 return {
-                    num: '字符串'
+                    num: 5
                 }
             },
             // 1.2 传递数据
             template: `
-                <child-comp v-bind:content="num"></child-comp>
-                <child-comp></child-comp>
+                <child-comp :content="num"></child-comp>
             `,
         })
         const vm = app.mount('#root')

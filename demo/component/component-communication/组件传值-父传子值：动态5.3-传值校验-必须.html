@@ -24,10 +24,8 @@
                 // 2.1 接收数据
                 props: {
                     content: {
-                        // default: 1
-                        default: function () {
-                            return 3
-                        }
+                        required: true,
+                        default: 1
                     }
                 }
             }
@@ -45,7 +43,6 @@
             },
             // 1.2 传递数据
             template: `
-                <child-comp v-bind:content="num"></child-comp>
                 <child-comp></child-comp>
             `,
         })
