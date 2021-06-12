@@ -19,11 +19,14 @@
             ChildComp = {
                 // 2.2 使用数据
                 template: `
-                    <div>string：{{string}}</div>
-                    <div>number：{{number}}</div>
+                    <div>{{content}}</div>
                 `,
                 // 2.1 接收数据
-                props: ['string', 'number']
+                props: {
+                    content: {
+                        default: 1
+                    }
+                }
             }
 
         // 1.父组件
@@ -31,17 +34,16 @@
             components: {
                 ChildComp: ChildComp,
             },
+            //1.1 定义数据
             data() {
                 return {
-                    params: {
-                        string: '字符串',
-                        number: 123,
-                    }
+                    num: '字符串'
                 }
             },
-            // 2.使用子组件并传值
+            // 1.2 传递数据
             template: `
-                <child-comp v-bind="params"></child-comp>
+                <child-comp v-bind:content="num"></child-comp>
+                <child-comp></child-comp>
             `,
         })
         const vm = app.mount('#root')
