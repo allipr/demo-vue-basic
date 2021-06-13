@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        //1、父组件：
+        const app = Vue.createApp({
+            template: `
+                <list></list>
+            `,
+        })
+        //2、子组件：
+        app.component('list', {
+            data() {
+                return {
+                    list: [1, 2, 3, 4, 5]
+                }
+            },
+            // 2.2、使用父值
+            template: `
+                <div>
+                    <p v-for="item in list">{{item}}</p>
+                </div>
+            `,
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>
