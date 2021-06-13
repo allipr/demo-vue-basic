@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        // 1.父组件：
+        const app = Vue.createApp({
+            // 1.1、定义数据
+            data() {
+                return {
+                    num: 1
+                }
+            },
+            // 1.2、传递数据
+            template: `
+                <child :count="num"></child>
+                <child :count="num"></child>
+            `,
+        })
+        // 2.子组件：
+        app.component('child', {
+            //2.1、接收父数据
+            props: ['count'],
+            //2.2、使用父数据：将父数据复制给自己的数据
+            data() {
+                return {
+                    mycount: this.count
+                }
+            },
+            //2.3、修改自己的数据
+            template: `<div @click="mycount+=1">{{ mycount }}</div>`,
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>
