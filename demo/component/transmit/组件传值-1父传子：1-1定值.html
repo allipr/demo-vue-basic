@@ -16,23 +16,18 @@
     <script>
         //1、父组件：
         const app = Vue.createApp({
+            // 1.1、传递数据
             template: `
-                <list></list>
+                <child str1="父值1" str2="父值2"></child>
             `,
         })
         //2、子组件：
-        app.component('list', {
-            data() {
-                return {
-                    list: [1, 2, 3, 4, 5]
-                }
-            },
+        app.component('child', {
+            // 2.1、接收父值
+            props: ['str1', 'str2'],
             // 2.2、使用父值
-            template: `
-                <div>
-                    <p v-for="item in list">{{item}}</p>
-                </div>
-            `,
+            template: `<div>{{str1}}--{{str2}}</div>`,
+
         })
         const vm = app.mount('#root')
     </script>

@@ -15,28 +15,29 @@
 
     <script>
         //1、父组件：
+        //v-slot="{items}"对象解构赋值
         const app = Vue.createApp({
             //插槽内容
             template: `
-                <child>
-                    <input type="submit" value="提交">
-                </child>
-                <hr/>
-                <child>
-                    <div>提交</div>
-                </child>
+                <list v-slot="{items,idx}">
+                    <p>{{items}}--{{idx}}</p>
+                </list>
             `,
         })
         //2、子组件：
-        app.component('child', {
-            //插槽结构
+        app.component('list', {
+            data() {
+                return {
+                    list: [1, 2, 3, 4, 5, 6]
+                }
+            },
+            // 插槽结构
+            //<slot v-for="item in list" :item="item"></slot> 也可以
             template: `
-                <form>
-                    <input type="text">
-                    <slot></slot>
-                </form>
+                <div>
+                    <slot v-for="(item,index) in list" :items="item" :idx="index"/>
+                </div>
             `,
-
         })
         const vm = app.mount('#root')
     </script>

@@ -14,29 +14,29 @@
     <div id="root"></div>
 
     <script>
-        //1、父组件：
+        //1、父组件
         const app = Vue.createApp({
-            //插槽内容
+            //1.1、定义数据
+            data() {
+                return {
+                    num: 123,
+                    str: '字符串'
+                }
+            },
+            // 1.2、传递数据
             template: `
-                <child>
-                    <input type="submit" value="提交">
-                </child>
-                <hr/>
-                <child>
-                    <div>提交</div>
-                </child>
+                <child v-bind:data1="num" :data2="str"></child>
             `,
         })
-        //2、子组件：
+        //2、子组件
         app.component('child', {
-            //插槽结构
+            // 2.1、接收父值
+            props: ['data1', 'data2'],
+            //2.2、使用父值
             template: `
-                <form>
-                    <input type="text">
-                    <slot></slot>
-                </form>
-            `,
-
+             <div>{{typeof data1}}--{{data1}}</div>
+             <div>{{typeof data2}}--{{data2}}</div>
+             `,
         })
         const vm = app.mount('#root')
     </script>

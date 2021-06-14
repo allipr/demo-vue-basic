@@ -14,34 +14,33 @@
     <div id="root"></div>
 
     <script>
-        //1、父组件：
+        // 1.父组件
         const app = Vue.createApp({
+            //1.1、定义数据
             data() {
                 return {
-                    text: "我的按钮"
+                    num: '字符串'
                 }
             },
-            //插槽内容
+            // 1.2、定义数据
             template: `
-                <child>
-                    <input type="submit" :value="text">
-                </child>
-                <hr/>
-                <child>
-                    <div>{{text}}</div>
-                </child>
+                <child v-bind:content="num"></child>
             `,
         })
-        //2、子组件：
         app.component('child', {
-            //插槽结构
-            template: `
-                <form>
-                    <input type="text">
-                    <slot></slot>
-                </form>
-            `,
 
+            // 2.1 接收父值
+            // 约束数据类型：String Number Boolean Array Object Function Symbol
+            props: {
+                content: {
+                    type: Number
+                }
+            },
+            // 2.2 使用父值
+            template: `
+            <div>{{content}}</div>
+            <div>{{typeof content}}</div>
+            `
         })
         const vm = app.mount('#root')
     </script>

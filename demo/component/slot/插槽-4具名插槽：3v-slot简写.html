@@ -16,6 +16,7 @@
     <script>
         //1、父组件：
         const app = Vue.createApp({
+            //插槽内容
             template: `
                 <layout>
                     <template #header>
@@ -31,7 +32,7 @@
         //2、子组件：
         app.component('layout', {
 
-            // 2.2、使用父值
+            // 插槽结构
             template: `
                 <slot name="header"></slot>
                 <div>content</div>

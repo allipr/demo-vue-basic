@@ -18,25 +18,25 @@
         const app = Vue.createApp({
             //插槽内容
             template: `
-                <child>
-                    <input type="submit" value="提交">
-                </child>
-                <hr/>
-                <child>
-                    <div>提交</div>
-                </child>
+                <layout>
+                    <template v-slot:header>
+                        <div>header</div>
+                    </template>
+                    <template v-slot:footer>
+                        <div>footer</div>
+                    </template>
+                    
+                </layout>
             `,
         })
         //2、子组件：
-        app.component('child', {
-            //插槽结构
+        app.component('layout', {
+            // 插槽结构
             template: `
-                <form>
-                    <input type="text">
-                    <slot></slot>
-                </form>
+                <slot name="header"></slot>
+                <div>content</div>
+                <slot name="footer"></slot>
             `,
-
         })
         const vm = app.mount('#root')
     </script>

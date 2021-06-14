@@ -14,26 +14,9 @@
     <div id="root"></div>
 
     <script>
-        // 2.子组件 
-        const
-            ChildComp = {
-                // 2.2 使用数据
-                template: `
-                    <div>string：{{str}}</div>
-                    <div>number：{{num}}</div>
-                    <div>array：{{arr}}--{{arr[0]}}--{{arr[1]}}--{{arr[2]}}--{{arr[2]['a']}}</div>
-                    <div>object：{{obj}}--{{obj['m']}}--{{obj.s}}</div>
-                `,
-                // 2.1 接收数据
-                props: ['str', 'num', 'arr', 'obj']
-            }
-
         // 1.父组件
         const app = Vue.createApp({
-            components: {
-                ChildComp: ChildComp,
-            },
-            // 1.1 定义数据
+            // 1.1、 定义数据
             data() {
                 return {
                     params: {
@@ -52,7 +35,19 @@
             },
             // 1.2 传递数据
             template: `
-                <child-comp v-bind="params"></child-comp>
+                <child v-bind="params"></child>
+            `,
+        })
+        //2、子组件
+        app.component('child', {
+            // 2.1 接收父值
+            props: ['str', 'num', 'arr', 'obj'],
+            // 2.2 使用父值
+            template: `
+            <div>string：{{str}}</div>
+            <div>number：{{num}}</div>
+            <div>array：{{arr}}--{{arr[0]}}--{{arr[1]}}--{{arr[2]}}--{{arr[2]['a']}}</div>
+            <div>object：{{obj}}--{{obj['m']}}--{{obj.s}}</div>
             `,
         })
         const vm = app.mount('#root')

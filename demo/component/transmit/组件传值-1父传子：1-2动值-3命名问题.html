@@ -14,34 +14,33 @@
     <div id="root"></div>
 
     <script>
-        //1、父组件：
+        //1、父组件
         const app = Vue.createApp({
+            //1.1、定义数据
             data() {
                 return {
-                    text: "我的按钮"
+                    params: {
+                        a: 123,
+                        b: 456,
+                        c: 789
+                    }
                 }
             },
-            //插槽内容
+            //1.2、发送数据
             template: `
-                <child>
-                    <input type="submit" :value="text">
-                </child>
-                <hr/>
-                <child>
-                    <div>{{text}}</div>
-                </child>
+                <child :data-a="params.a" :data-b="params.b" :c="params.c"></child>
             `,
         })
-        //2、子组件：
+        //2、子组件
         app.component('child', {
-            //插槽结构
+            //2.1、接收父值
+            props: ['data-a', 'dataB', 'c'],
+            //2.2、使用父值
             template: `
-                <form>
-                    <input type="text">
-                    <slot></slot>
-                </form>
+                <div>{{data-a}}</div>
+                <div>{{dataB}}</div>
+                <div>{{c}}</div>
             `,
-
         })
         const vm = app.mount('#root')
     </script>

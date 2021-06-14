@@ -16,6 +16,7 @@
     <script>
         //1、父组件：
         const app = Vue.createApp({
+            //插槽内容
             template: `
                 <child>
                     <input type="submit" value="提交">
@@ -29,7 +30,7 @@
         //2、子组件：
         app.component('child', {
 
-            // 2.2、使用父值
+            // 插槽结构
             template: `
                 <form>
                     <input type="text">

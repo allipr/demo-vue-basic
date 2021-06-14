@@ -16,26 +16,27 @@
     <script>
         //1、父组件：
         const app = Vue.createApp({
+            //插槽内容
             template: `
-                <layout>
-                    <template v-slot:header>
-                        <div>header</div>
-                    </template>
-                    <template v-slot:footer>
-                        <div>footer</div>
-                    </template>
-                    
-                </layout>
+                <list v-slot="slotProps">
+                    <p>{{slotProps.item}}</p>
+                </list>
+                <list v-slot="slotProps">
+                    <span>{{slotProps.item}}</span>
+                </list>
             `,
         })
         //2、子组件：
-        app.component('layout', {
-
-            // 2.2、使用父值
+        app.component('list', {
+            data() {
+                return {
+                    list: [1, 2, 3, 4, 5]
+                }
+            },
+            // 插槽结构
+            //<slot v-for="item in list" :item="item"></slot> 也可以
             template: `
-                <slot name="header"></slot>
-                <div>content</div>
-                <slot name="footer"></slot>
+                <slot v-for="item in list" :item="item"/>
             `,
         })
         const vm = app.mount('#root')

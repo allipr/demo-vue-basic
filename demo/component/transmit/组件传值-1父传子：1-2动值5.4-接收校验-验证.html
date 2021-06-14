@@ -14,37 +14,31 @@
     <div id="root"></div>
 
     <script>
-        // 2.子组件 
-        const
-            ChildComp = {
-                // 2.2 使用数据
-                template: `
-                    <div>{{content}}</div>
-                `,
-                // 2.1 接收数据
-                props: {
-                    content: {
-                        required: true,
-                        default: 1
-                    }
-                }
-            }
-
         // 1.父组件
         const app = Vue.createApp({
-            components: {
-                ChildComp: ChildComp,
-            },
             //1.1 定义数据
             data() {
                 return {
-                    num: '字符串'
+                    num: 5
                 }
             },
             // 1.2 传递数据
-            template: `
-                <child-comp></child-comp>
-            `,
+            template: `<child :content="num"></child>`,
+        })
+        //2、子组件
+        app.component('child', {
+
+            // 2.1 接收数据
+            props: {
+                content: {
+                    validator: (value) => {
+                        alert(value)
+                        return value < 1000
+                    }
+                }
+            },
+            // 2.2 使用数据
+            template: `<div>{{content}}</div>`,
         })
         const vm = app.mount('#root')
     </script>

@@ -14,40 +14,37 @@
     <div id="root"></div>
 
     <script>
-        // 1.子组件 
-        const
-            Child = {
-                props: ['count'],
-                template: `
-                    <div>{{count}}</div>
-                    <button @click="handleClick">增加</button>
-                 `,
-                methods: {
-                    handleClick() {
-                        this.$emit('add')
-                    }
-                }
-            }
-
-
-        // 2.父组件
+        // 1.父组件
         const app = Vue.createApp({
             components: {
-                Child
+                ChildComp: ChildComp,
             },
-            // emits: ['add'],
+            // 2.1 定义数据
             data() {
                 return {
-                    num: 0
+                    func: () => {
+                        alert("我是函数!")
+                    }
                 }
             },
-            methods: {
-                handleAdd() {
-                    this.num += 1
-                }
-            },
+            // 2.2 传递数据
             template: `
-            <child :count="num" @add="handleAdd"></child>
+                <child :content="func"></child>
+            `,
+        })
+        //2、子组件
+        app.component('child', {
+            //2.1、接收父值
+            props: ['content'],
+            //2.2、使用父值
+            methods: {
+                handleClick() {
+                    this.content()
+                }
+            },
+            //2.3、模板应用
+            template: `
+            <div @click="handleClick">{{content}}</div>
             `,
         })
         const vm = app.mount('#root')
