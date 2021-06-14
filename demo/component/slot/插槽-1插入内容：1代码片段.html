@@ -16,32 +16,27 @@
     <script>
         //1、父组件：
         const app = Vue.createApp({
-            data() {
-                return {
-                    text: "我的按钮"
-                }
-            },
+            //插入内容
             template: `
                 <child>
-                    <input type="submit" :value="text">
+                    <input type="submit" value="提交">
                 </child>
                 <hr/>
-                <child></child>
+                <child>
+                    <div>提交</div>
+                </child>
             `,
         })
         //2、子组件：
         app.component('child', {
-
-            // 2.2、使用父值
+            //插槽结构
             template: `
                 <form>
                     <input type="text">
-    
-                    <slot>
-                        <button>默认按钮</button>
-                    </slot>
+                    <slot></slot>
                 </form>
             `,
+
         })
         const vm = app.mount('#root')
     </script>

@@ -14,29 +14,36 @@
     <div id="root"></div>
 
     <script>
+        //定义组件
+        const Test = {
+            template: `Test组件`
+        }
         //1、父组件：
         const app = Vue.createApp({
+            components: {
+                Test
+            },
+            //插入内容
             template: `
                 <child>
-                    <input type="submit" value="提交">
+                    slot传的字符串
                 </child>
                 <hr/>
                 <child>
-                    <div>提交</div>
+                    <test/>
                 </child>
             `,
         })
         //2、子组件：
         app.component('child', {
-
-            // 2.2、使用父值
+            //插槽结构
             template: `
                 <form>
                     <input type="text">
                     <slot></slot>
+
                 </form>
             `,
-
         })
         const vm = app.mount('#root')
     </script>
