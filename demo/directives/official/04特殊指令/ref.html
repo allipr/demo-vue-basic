@@ -12,29 +12,26 @@
 
 <body>
     <div id="root"></div>
-
     <script>
-        //根组件：
+        //根组件
         const app = Vue.createApp({
             template: `
-                <sync></sync>
-                <async></async>
+            <div>
+                <p ref="count">DOM节点</p>
+            </div>
+
             `,
-        })
-        //同步组件
-        app.component('sync', {
-            template: `<div>同步组件</div>`,
-        })
-        //异步组件
-        app.component('async', Vue.defineAsyncComponent(() => {
-            return new Promise((resolve, reject) => {
+            mounted() {
+                //获取节点
+                console.log(this.$refs.count);
+                //操作节点
                 setTimeout(() => {
-                    resolve({
-                        template: `<div>异步组件</div>`,
-                    })
+                    this.$refs.count.innerHTML = 'Hello'
                 }, 3000)
-            })
-        }))
+                // document.write(this.$refs.count)
+                // alert(this.$refs.count)
+            }
+        })
         const vm = app.mount('#root')
     </script>
 </body>
