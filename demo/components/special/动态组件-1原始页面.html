@@ -30,7 +30,6 @@
                     }
                 }
             },
-            // 1.1、传递数据
             template: `
                 <child1 v-show="current==='child1'"></child1>
                 <child2 v-show="current==='child2'"></child2>
@@ -39,9 +38,7 @@
         })
         //2、子组件：
         app.component('child1', {
-            // 2.2、使用父值
             template: `<input>`,
-
         })
         app.component('child2', {
             template: `<div>Hello World</div>`,

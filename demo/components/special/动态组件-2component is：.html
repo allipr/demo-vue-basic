@@ -30,7 +30,6 @@
                     }
                 }
             },
-            // 1.1、传递数据
             template: `
                 <component :is="current"></component>
                 <button @click="handleClick">切换</button>
@@ -38,7 +37,6 @@
         })
         //2、子组件：
         app.component('child1', {
-            // 2.2、使用父值
             template: `<input>`,
 
         })
