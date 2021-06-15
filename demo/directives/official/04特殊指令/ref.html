@@ -19,7 +19,6 @@
             <div>
                 <p ref="count">DOM节点</p>
             </div>
-
             `,
             mounted() {
                 //获取节点
@@ -28,8 +27,6 @@
                 setTimeout(() => {
                     this.$refs.count.innerHTML = 'Hello'
                 }, 3000)
-                // document.write(this.$refs.count)
-                // alert(this.$refs.count)
             }
         })
         const vm = app.mount('#root')
