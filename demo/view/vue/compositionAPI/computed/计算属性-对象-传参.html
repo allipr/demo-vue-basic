@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+    <style>
+        * {
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const app = Vue.createApp({
+            setup() {
+                const {
+                    ref,
+                    computed
+                } = Vue
+                const count = ref(0)
+                handleClick = () => {
+                    count.value += 1
+                }
+                countAdd = computed({
+                    get: () => {
+                        return count.value + 5
+                    },
+                    set: (param) => count.value = param - 5
+                })
+                setTimeout(() => {
+                    countAdd.value = 100
+                }, 3000)
+                return {
+                    count,
+                    handleClick,
+                    countAdd
+                }
+
+            },
+            template: `<div @click="handleClick">{{count}}--{{countAdd}}</div`,
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>
