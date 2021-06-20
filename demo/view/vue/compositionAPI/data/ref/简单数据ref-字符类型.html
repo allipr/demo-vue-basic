@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const app = Vue.createApp({
+            template: `
+            <div>{{str}}</div>
+            `,
+            setup() {
+                const {
+                    ref
+                } = Vue
+                const str = ref('字符串')
+                setTimeout(() => {
+                    str.value = '两秒后变化'
+                }, 2000)
+                return {
+                    str
+                }
+            },
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>

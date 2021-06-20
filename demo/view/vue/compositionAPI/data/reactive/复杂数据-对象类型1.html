@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const app = Vue.createApp({
+            template: `<div>{{obj.name}}--{{obj.age}}</div>`,
+            setup() {
+                const {
+                    reactive
+                } = Vue
+                const obj = reactive({
+                    name: '对象',
+                    age: 23
+                })
+                setTimeout(() => {
+                    obj.name = '变化'
+                }, 2000)
+                return {
+                    obj
+                }
+            },
+        })
+        const vm = app.mount('#root')
+    </script>
+</body>
