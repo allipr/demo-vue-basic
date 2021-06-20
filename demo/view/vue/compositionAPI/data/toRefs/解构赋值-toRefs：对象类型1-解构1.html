@@ -14,10 +14,11 @@
     <div id="root"></div>
     <script>
         const app = Vue.createApp({
-            template: `<div>{{obj.name}}--{{obj.age}}</div>`,
+
             setup() {
                 const {
-                    reactive
+                    reactive,
+                    toRefs
                 } = Vue
                 const obj = reactive({
                     name: '对象',
@@ -25,11 +26,14 @@
                 })
                 setTimeout(() => {
                     obj.name = '变化'
+                    obj.age = 32
                 }, 2000)
+
                 return {
-                    obj
+                    ...toRefs(obj)
                 }
             },
+            template: `<div>{{name}}--{{age}}</div>`,
         })
         const vm = app.mount('#root')
     </script>

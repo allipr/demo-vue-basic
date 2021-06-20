@@ -14,22 +14,20 @@
     <div id="root"></div>
     <script>
         const app = Vue.createApp({
-            template: `<div>{{name}}--{{age}}</div>`,
+
             setup() {
                 const {
-                    reactive
+                    readonly
                 } = Vue
-                const obj = reactive({
-                    name: '对象',
-                    age: 23
-                })
+                const arr = readonly([123])
                 setTimeout(() => {
-                    obj.name = '变化'
-                }, 2000)
+                    arr[0] = 789
+                }, 3000)
                 return {
-                    ...obj
+                    arr
                 }
             },
+            template: `<div>{{arr[0]}}</div>`,
         })
         const vm = app.mount('#root')
     </script>

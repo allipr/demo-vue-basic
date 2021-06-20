@@ -14,9 +14,7 @@
     <div id="root"></div>
     <script>
         const app = Vue.createApp({
-            template: `
-            <div>{{num}}</div>
-            `,
+
             setup() {
                 const {
                     ref
@@ -29,6 +27,7 @@
                     num
                 }
             },
+            template: `<div>{{num}}</div>`,
         })
         const vm = app.mount('#root')
     </script>

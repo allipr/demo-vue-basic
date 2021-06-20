@@ -17,17 +17,28 @@
 
             setup() {
                 const {
-                    reactive
+                    reactive,
+                    toRefs
                 } = Vue
-                const arr = reactive([1, 2, 3])
+                const obj = reactive({
+                    name: '对象',
+                    age: 23
+                })
+                const {
+                    name,
+                    age
+                } = toRefs(obj)
                 setTimeout(() => {
-                    arr[0] = 'a'
+                    name.value = '变化'
+                    age.value = 32
                 }, 2000)
+
                 return {
-                    arr
+                    name,
+                    age
                 }
             },
-            template: `<div>{{arr[0]}}--{{arr[1]}}--{{arr[2]}}</div>`,
+            template: `<div>{{name}}--{{age}}</div>`,
         })
         const vm = app.mount('#root')
     </script>

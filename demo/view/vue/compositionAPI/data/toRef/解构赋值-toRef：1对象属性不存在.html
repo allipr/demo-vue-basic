@@ -14,20 +14,25 @@
     <div id="root"></div>
     <script>
         const app = Vue.createApp({
-
             setup() {
                 const {
-                    reactive
+                    reactive,
+                    toRef
                 } = Vue
-                const arr = reactive([1, 2, 3])
+                const obj = reactive({
+                    name: '张三'
+                })
+                let age = toRef(obj, "age")
                 setTimeout(() => {
-                    arr[0] = 'a'
-                }, 2000)
+                    age.value = "年龄"
+                }, 3000)
                 return {
-                    arr
+                    obj,
+                    age
                 }
+
             },
-            template: `<div>{{arr[0]}}--{{arr[1]}}--{{arr[2]}}</div>`,
+            template: `<div>姓名：{{obj.name}}--年龄：{{age}}</div>`,
         })
         const vm = app.mount('#root')
     </script>
