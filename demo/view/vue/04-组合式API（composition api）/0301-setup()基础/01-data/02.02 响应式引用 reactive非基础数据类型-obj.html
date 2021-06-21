@@ -1,43 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/vue@next"></script>
     <title>vue basic</title>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div id="root"></div>
 
     <script>
-        //ref reactive 响应式引用
-        //原理 通过proxy对数据进行封装,当数据变化时,触发模板数据进行更新
-        //reactive 处理非基础类型数据响应式引用
-        const app = Vue.createApp({
-            template: `<div>name:{{obj.name}}</div>`,
-            setup() {
-                //1.从Vue中解构出reactive
-                const {
-                    reactive
-                } = Vue
-                //2.通过proxy {name:"云牧"} 变成 Proxy({name:"云牧"})这样响应式引用
-                let obj = reactive({
-                    name: '云牧'
-                })
-                //3.开计时器,2秒后,云牧变云朵
-                setTimeout(() => {
-                    obj.name = '云朵'
-                }, 2000);
-                return {
-                    obj
-                }
-            }
-
-        })
-        app.mount("#root")
+      //ref reactive 响应式引用
+      //原理 通过proxy对数据进行封装,当数据变化时,触发模板数据进行更新
+      //reactive 处理非基础类型数据响应式引用
+      const app = Vue.createApp({
+        template: `<div>name:{{obj.name}}</div>`,
+        setup() {
+          //1.从Vue中解构出reactive
+          const { reactive } = Vue;
+          //2.通过proxy {name:"云牧"} 变成 Proxy({name:"云牧"})这样响应式引用
+          let obj = reactive({
+            name: '云牧',
+          });
+          //3.开计时器,2秒后,云牧变云朵
+          setTimeout(() => {
+            obj.name = '云朵';
+          }, 2000);
+          return { obj };
+        },
+      });
+      app.mount('#root');
     </script>
-</body>
+  </body>
+</html>
