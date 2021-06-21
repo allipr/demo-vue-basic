@@ -1,0 +1,71 @@
+{
+    "workbench.tree.indent":20,
+    "workbench.startupEditor":"newUntitledFile",
+    "editor.tabSize":2,
+    "editor.fontSize":18,
+
+
+
+        "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Material Theme Palenight",
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "git.autofetch": true,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "workbench.colorCustomizations": {
+    
+    },
+    "tabnine.experimentalAutoImports": true,
+    "explorer.confirmDelete": false,
+ 
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "beautify.language": {
+        "js": {
+            "type": [
+                "javascript",
+                "json"
+            ],
+            "filename": [
+                ".jshintrc",
+                ".jsbeautify"
+            ]
+        },
+        "css": [
+            "css",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html",
+            "vue"
+        ]
+    },
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "settingsSync.ignoredExtensions": [
+    
+    ],
+    "liveServer.settings.donotShowInfoMsg": true,
+    "window.zoomLevel": 1,
+    "editor.codeActionsOnSave": null
+
+
+}
