@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title></title>
+
+</head>
+<body>
+    <div id="root">
+        <h1>插值表达式赋值:</h1>
+        <p>{{msg2}}</p>
+        <h1>v-text指令赋值:</h1>
+        <p v-text="msg1"></p>
+        <h1>v-text指令优先</h1>
+        <p v-text="msg1">插值---{{msg2}}</p>
+        <h1>v-text指令覆盖</h1>
+        <p v-text="msg1">我是标签初始内容</p>
+    </div>
+        <script>
+            const app =Vue.createApp({
+                data () {
+                    return {
+                        msg1:"v-text指令",
+                        msg2:'插值表达式'
+                    }
+                },
+            })
+            const vm = app.mount('#root')
+        </script>
+</body>
